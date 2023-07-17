@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-interface ItemLayoutProps {
+interface BlockProps {
   children: React.ReactNode;
 }
 
-const ItemLayout = ({children}: ItemLayoutProps) => (
+const Block = ({children}: BlockProps) => (
   <div className={styles['item']}>
     {children}
   </div>
 );
 
-export default ItemLayout;
+export default Block;

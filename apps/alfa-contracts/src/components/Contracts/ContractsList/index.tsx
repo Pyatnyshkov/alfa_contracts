@@ -1,9 +1,7 @@
 import React from 'react';
 import Spin from 'arui-feather/spin';
-import GridRow from 'arui-feather/grid-row';
-import GridCol from 'arui-feather/grid-col';
 import { IContract } from '../../../models/contracts';
-import { useGetContractsQuery } from '../../../services/contracts';
+import { useGetContractsQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import { setCurrentContract } from '../../../store/reducers/app';
@@ -11,7 +9,7 @@ import { setCurrentContract } from '../../../store/reducers/app';
 import styles from './index.module.scss';
 
 const ContractsList = () => {
-  const filter = useAppSelector((state) => state.app.filter);
+  const filter = useAppSelector((state) => state.app.contractsFilter);
   const dispatch = useAppDispatch();
   const { data, isFetching, isLoading } = useGetContractsQuery(filter);
   const contracts = data || [];
@@ -25,32 +23,34 @@ const ContractsList = () => {
       </Typography.TitleResponsive>
     );
   return (
-    <div className={styles['table']}>
-      <GridRow className={styles['header']}>
-        <GridCol className={styles['col']}>Дата договора</GridCol>
-        <GridCol className={styles['col']}>Номер договора</GridCol>
-        <GridCol className={styles['col']}>Название компании</GridCol>
-        <GridCol className={styles['col']}>Банковские реквизиты</GridCol>
-        <GridCol className={styles['col']}>Инн</GridCol>
-      </GridRow>
-      {contracts.map((contract: IContract, index: number) => (
-        <div
-          key={index}
-          onClick={() => dispatch(setCurrentContract(contract))}
-          className={styles['row']}
-        >
-          <GridRow>
-            <GridCol className={styles['col']}>
+    <table className={styles['table']}>
+      <thead>
+        <tr className={styles['header']}>
+          <th className={styles['col']}>Дата договора</th>
+          <th className={styles['col']}>Номер договора</th>
+          <th className={styles['col']}>Название компании</th>
+          <th className={styles['col']}>Банковские реквизиты</th>
+          <th className={styles['col']}>Инн</th>
+        </tr>
+      </thead>
+      <tbody>
+        {contracts.map((contract: IContract, index: number) => (
+          <tr
+            key={index}
+            onClick={() => dispatch(setCurrentContract(contract))}
+            className={styles['row']}
+          >
+            <td className={styles['col']}>
               {new Date(contract.date).toLocaleDateString()}
-            </GridCol>
-            <GridCol className={styles['col']}>{contract.number}</GridCol>
-            <GridCol className={styles['col']}>{contract.company_name}</GridCol>
-            <GridCol className={styles['col']}>{contract.bank_details}</GridCol>
-            <GridCol className={styles['col']}>{contract.inn}</GridCol>
-          </GridRow>
-        </div>
-      ))}
-    </div>
+            </td>
+            <td className={styles['col']}>{contract.number}</td>
+            <td className={styles['col']}>{contract.company_name}</td>
+            <td className={styles['col']}>{contract.bank_details}</td>
+            <td className={styles['col']}>{contract.inn}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

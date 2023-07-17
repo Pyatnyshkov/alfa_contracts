@@ -1,17 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
-import { IFilter, IFilterELem } from '../../models/filter';
+import {
+  IContractsFilter,
+  ITranchesFilter,
+  IFilterELem,
+} from '../../models/filter';
 import { IContract } from '../../models/contracts';
+import { ITranche } from '../../models/tranches';
 
 interface AppState {
   navigation: string;
-  filter: IFilter;
+  contractsFilter: IContractsFilter;
+  tranchesFilter: ITranchesFilter;
   current_contract?: IContract;
+  current_tranche?: ITranche
 }
 
 const initialState: AppState = {
   navigation: 'contracts',
-  filter: {}
+  contractsFilter: {},
+  tranchesFilter: {},
 };
 
 const appSlice = createSlice({
@@ -21,15 +29,28 @@ const appSlice = createSlice({
     setNavigation(state, action: PayloadAction<string>) {
       state.navigation = action.payload;
     },
-    setFilter(state, action: PayloadAction<IFilterELem>) {
+    setContractsFilter(state, action: PayloadAction<IFilterELem>) {
       const { name, value } = action.payload;
-      state.filter[name] = value;
+      state.contractsFilter[name] = value;
+    },
+    setTranchesFilter(state, action: PayloadAction<IFilterELem>) {
+      const { name, value } = action.payload;
+      state.tranchesFilter[name] = value;
     },
     setCurrentContract(state, action: PayloadAction<IContract>) {
       state.current_contract = action.payload;
-    }
+    },
+    setCurrentTranche(state, action: PayloadAction<ITranche>) {
+      state.current_tranche = action.payload;
+    },
   },
 });
 
-export const { setNavigation, setFilter, setCurrentContract } = appSlice.actions;
+export const {
+  setNavigation,
+  setContractsFilter,
+  setTranchesFilter,
+  setCurrentContract,
+  setCurrentTranche
+} = appSlice.actions;
 export default appSlice.reducer;

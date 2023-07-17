@@ -16,6 +16,10 @@
   padding: 10px;
   font-size: 14px;
 }
+.table .col span {
+  text-decoration: underline;
+  text-align: center;
+}
 .table .row .col {
   font-size: 13px;
 }

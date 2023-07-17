@@ -1,9 +1,21 @@
-export interface IFilter extends IObjectKeys {
+export interface IContractsFilter extends IObjectKeys {
   merchant?: string;
   autlet?: string;
   terminal?: string;
   eqid?: string;
   name?: string;
+}
+
+export interface ITranchesFilter extends IObjectKeys {
+  merchant?: string;
+  autlet?: string;
+  terminal?: string;
+  name?: string;
+  from?: Date;
+  to?: Date;
+  kt?: number;
+  dt?: number;
+  amount?: number;
 }
 
 export interface IFilterELem {

@@ -1,5 +1,6 @@
-const url = {
+const urls = {
   contracts: '/api/contracts',
+  tranches: '/api/tranches',
 };
 
 const navigation = {
@@ -10,4 +11,4 @@ const navigation = {
 };
 
 
-export { url, navigation };
+export { urls, navigation };

@@ -5,7 +5,7 @@ import Input from 'arui-feather/input';
 import Button from 'arui-feather/button';
 import { FilterMIcon } from '@alfalab/icons-glyph/FilterMIcon';
 
-import { setFilter } from '../../../store/reducers/app';
+import { setContractsFilter } from '../../../store/reducers/app';
 import { useAppDispatch } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -41,7 +41,7 @@ const Filter = () => {
   const dispatch = useAppDispatch();
   const handleChange = (v?: string, e?: React.ChangeEvent<any>): void => {
     const { name, value } = e?.currentTarget;
-    name && dispatch(setFilter({ name, value }));
+    name && dispatch(setContractsFilter({ name, value }));
   };
 
   return (

@@ -1,22 +1,22 @@
-import React from 'react';
-import ItemLayout from './ItemLayout';
+import React, {Fragment} from 'react';
+import PageBlock from '../UI/PageBlock';
 import Filter from './Filter';
 import ContractsList from './ContractsList';
 import ContractInfo from './ContractInfo';
 
-import styles from './index.module.scss';
-
 const Contracts = () => {
   return (
-    <div className={styles['component']}>
-      <ItemLayout>
+    <Fragment>
+      <PageBlock>
         <Filter />
-      </ItemLayout>
-      <ItemLayout>
+      </PageBlock>
+      <PageBlock>
         <ContractsList />
-      </ItemLayout>
-      <ContractInfo />
-    </div>
+      </PageBlock>
+      <PageBlock>
+        <ContractInfo />
+      </PageBlock>
+    </Fragment>
   );
 };
 

@@ -1,7 +1,8 @@
-import React  from 'react';
+import React from 'react';
 import ItemLayout from './ItemLayout';
 import Filter from './Filter';
 import ContractsList from './ContractsList';
+import ContractInfo from './ContractInfo';
 
 import styles from './index.module.scss';
 
@@ -14,6 +15,7 @@ const Contracts = () => {
       <ItemLayout>
         <ContractsList />
       </ItemLayout>
+      <ContractInfo />
     </div>
   );
 };

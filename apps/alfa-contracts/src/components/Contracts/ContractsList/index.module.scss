@@ -1,0 +1,31 @@
+.table {
+  max-height: 180px;
+  overflow-y: scroll;
+
+  .header {
+    border-bottom: 1px solid #dfe2ec;
+    align-items: center;
+  }
+
+  .row:nth-child(odd) {
+    background-color: ghostwhite;
+  }
+
+  .col {
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .row {
+    .col {
+      font-size: 13px;
+    }
+  }
+
+  .row:hover {
+    cursor: pointer;
+    background-color: #b0cef6
+  }
+
+}

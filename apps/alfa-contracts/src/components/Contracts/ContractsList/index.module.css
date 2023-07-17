@@ -1,3 +1,25 @@
-
+.table {
+  max-height: 180px;
+  overflow-y: scroll;
+}
+.table .header {
+  border-bottom: 1px solid #dfe2ec;
+  align-items: center;
+}
+.table .row:nth-child(odd) {
+  background-color: ghostwhite;
+}
+.table .col {
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+}
+.table .row .col {
+  font-size: 13px;
+}
+.table .row:hover {
+  cursor: pointer;
+  background-color: #b0cef6;
+}
 
 /*# sourceMappingURL=index.module.css.map */

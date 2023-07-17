@@ -2,13 +2,12 @@ import React from 'react';
 import Link from 'arui-feather/link';
 import styles from './header.module.scss';
 import { Typography } from '@alfalab/core-components/typography';
-import { CategoryBankMIcon } from '@alfalab/icons-glyph/CategoryBankMIcon';
 
 const Header = () => {
   return (
     <div className={styles['component']}>
       <div className={styles['label']}>
-        <CategoryBankMIcon />
+        <div className={styles['logo']}/>
         <Typography.TitleResponsive tag="div" view="small">
           Альфа-Банк. Система расчетов
         </Typography.TitleResponsive>

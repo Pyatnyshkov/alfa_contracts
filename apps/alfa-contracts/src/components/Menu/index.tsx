@@ -24,6 +24,9 @@ const WindowMenu = () => {
     {
       content: <MenuItems.Reports />,
       value: 'reports',
+      props: {
+        disabled: true
+      }
     },
   ];
 

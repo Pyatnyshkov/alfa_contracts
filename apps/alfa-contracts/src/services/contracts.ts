@@ -4,6 +4,7 @@ import axios, { AxiosError } from 'axios';
 
 import { url } from '../utils/urls';
 import { IContract } from '../models/contracts';
+import { IFilter } from '../models/filter';
 
 import contracts from './contracts.json';
 
@@ -30,7 +31,7 @@ export const contractsApi = createApi({
   reducerPath: 'contractsApi',
   baseQuery: contractsBaseQuery(),
   endpoints: (build) => ({
-    getContracts: build.query<IContract[], null>({
+    getContracts: build.query<IContract[], IFilter>({
       query: () => ({
         url: url.contracts,
       }),

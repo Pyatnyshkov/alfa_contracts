@@ -1,4 +1,4 @@
-export interface IContract {
+export interface IContract extends IObjectKeys {
   date: Date;
   number: string;
   company_name: string;
@@ -17,4 +17,8 @@ export interface IContract {
   sftp: string;
   eq_id: string;
   tariff: string;
+}
+
+interface IObjectKeys {
+  [key: string]: any;
 }

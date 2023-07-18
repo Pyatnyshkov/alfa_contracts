@@ -6,7 +6,7 @@ import Button from 'arui-feather/button';
 import CalendarInput from 'arui-feather/calendar-input';
 import { FilterMIcon } from '@alfalab/icons-glyph/FilterMIcon';
 
-import { setTranchesFilter } from '../../../store/reducers/tranches';
+import { setTranchesFilter, setRefetch } from '../../../store/reducers/tranches';
 import { useAppDispatch } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -61,6 +61,10 @@ const Filter = () => {
     name && dispatch(setTranchesFilter({ name, value }));
   };
 
+  const setFilter = () => {
+    dispatch(setRefetch(true));
+  };
+
   return (
     <div>
       <Heading size="xs" className={styles['heading']}>
@@ -110,7 +114,7 @@ const Filter = () => {
               })}
           </InputGroup>
         </div>
-        <Button size="s" icon={<FilterMIcon />}>
+        <Button size="s" icon={<FilterMIcon />} onClick={setFilter}>
           Фильтр
         </Button>
       </div>

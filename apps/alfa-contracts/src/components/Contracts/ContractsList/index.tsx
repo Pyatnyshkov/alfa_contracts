@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Spin from 'arui-feather/spin';
 import { ArrowUpDownHeavyMIcon } from '@alfalab/icons-glyph/ArrowUpDownHeavyMIcon';
 import { IContract } from '../../../models/contracts';
-import { useGetContractsQuery } from '../../../services/api';
+import { useLazyGetContractsQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import { setCurrentContract } from '../../../store/reducers/contracts';
@@ -11,12 +11,24 @@ import styles from './index.module.scss';
 
 const ContractsList = () => {
   const filter = useAppSelector((state) => state.contracts.contractsFilter);
+  const need_refetch = useAppSelector((state) => state.contracts.need_refetch);
+
   const dispatch = useAppDispatch();
-  const { data, isFetching, isLoading } = useGetContractsQuery(filter);
-  const [contracts, setContracts] = useState<IContract[]>([]);
+  const [getContracts, { data, isLoading, isFetching }] =
+    useLazyGetContractsQuery();
+  const [contracts, setContracts] = useState<IContract[] | []>([]);
   const [order, setOrder] = useState<boolean>(false);
 
-  useEffect(() => setContracts(data || []), [data]);
+  useEffect(() => {
+    getContracts(filter);
+  }, []);
+  useEffect(() => {
+    if (need_refetch) getContracts(filter);
+  }, [need_refetch]);
+
+  useEffect(() => {
+    setContracts(data || []);
+  }, [data]);
 
   const sortNumbers = (data: string) => {
     setOrder(!order);

@@ -3,11 +3,12 @@ export interface IContractsFilter extends IObjectKeys {
   autlet?: string;
   terminal?: string;
   eqid?: string;
-  name?: string;
+  company_name?: string;
+  ref?: number;
 }
 
 export interface ITranchesFilter extends IObjectKeys {
-  merchant?: string;
+  company_name?: string;
   autlet?: string;
   terminal?: string;
   name?: string;
@@ -16,6 +17,7 @@ export interface ITranchesFilter extends IObjectKeys {
   kt?: number;
   dt?: number;
   amount?: number;
+  ref?: number;
 }
 
 export interface ITransactionsFilter extends IObjectKeys {
@@ -25,11 +27,12 @@ export interface ITransactionsFilter extends IObjectKeys {
   mid?: string;
   utrno?: number;
   auth_code?: string;
+  ref?: number;
 }
 
 export interface IFilterELem {
   name: string;
-  value: string;
+  value: string | number;
 }
 
 interface IObjectKeys {

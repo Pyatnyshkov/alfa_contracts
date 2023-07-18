@@ -12,7 +12,8 @@
     "utrno": 5498393433,
     "auth_code": "456",
     "aggregation": ["AGGR1_PARAM", "AGGR2_PARAM"],
-    "other": "Какое-то поле"
+    "other": "Какое-то поле",
+    "ref": 0
   },
   {
     "id": 1002,
@@ -27,7 +28,8 @@
     "utrno": 54983961721,
     "auth_code": "456",
     "aggregation": ["AGGR1_PARAM", "AGGR2_PARAM"],
-    "other": "Какое-то поле"
+    "other": "Какое-то поле",
+    "ref": 1
   },
   {
     "id": 1003,
@@ -42,6 +44,7 @@
     "utrno": 54983961722,
     "auth_code": "456",
     "aggregation": ["AGGR1_PARAM", "AGGR2_PARAM"],
-    "other": "Какое-то поле"
+    "other": "Какое-то поле",
+    "ref": 2
   }
 ]

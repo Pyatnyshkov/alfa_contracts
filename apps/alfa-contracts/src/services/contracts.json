@@ -1,6 +1,8 @@
 [
   {
     "date": 1689612268914,
+    "merchant": 198,
+    "autlet": "qwe",
     "number": "150-Д/С",
     "company_name": "ООО Василек",
     "bank_details": 40817192901924389,
@@ -23,10 +25,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 0
   },
   {
     "date": 1689390000000,
+    "merchant": 199,
+    "autlet": "qwert",
     "number": "146-Д/С",
     "company_name": "Рога и копыта",
     "bank_details": 40817192901924389,
@@ -49,10 +54,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 1
   },
   {
     "date": 1689562800000,
+    "merchant": 200,
+    "autlet": "asd",
     "number": "147-Д/С",
     "company_name": "ИП Ромашка",
     "bank_details": 40817192901924389,
@@ -75,10 +83,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 2
   },
   {
     "date": 1689612268914,
+    "merchant": 201,
+    "autlet": "asdfg",
     "number": "148-Д/С",
     "company_name": "ООО Московские огни",
     "bank_details": 40817192901924389,
@@ -101,10 +112,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 3
   },
   {
     "date": 1688958000000,
+    "merchant": 202,
+    "autlet": "asdfg",
     "number": "145-Д/С",
     "company_name": "ООО Московские огни",
     "bank_details": 40817192901924389,
@@ -127,10 +141,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 4
   },
   {
     "date": 1689390000000,
+    "merchant": 203,
+    "autlet": "asdfg",
     "number": "145-Д/С",
     "company_name": "ООО Московские огни",
     "bank_details": 40817192901924389,
@@ -153,10 +170,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 5
   },
   {
     "date": 1689612268914,
+    "merchant": 204,
+    "autlet": "asdfg",
     "number": "145-Д/С",
     "company_name": "ООО Московские огни",
     "bank_details": 40817192901924389,
@@ -179,10 +199,13 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 6
   },
   {
     "date": 1689612268914,
+    "merchant": 205,
+    "autlet": "zxc",
     "number": "145-Д/С",
     "company_name": "ООО Московские огни",
     "bank_details": 40817192901924389,
@@ -205,6 +228,7 @@
     ],
     "sftp": "sftp.domain1.ru/reports",
     "eq_id": "H12323",
-    "tariff": "{}"
+    "tariff": "{}",
+    "ref": 7
   }
 ]

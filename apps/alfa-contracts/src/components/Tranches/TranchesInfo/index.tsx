@@ -5,6 +5,8 @@ import Button from 'arui-feather/button';
 import InfoElem from '../../UI/InfoElem';
 
 import { setNavigation } from '../../../store/reducers/app';
+import { setContractsFilter } from '../../../store/reducers/contracts';
+import { setTransactionsFilter } from '../../../store/reducers/transactions';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -23,7 +25,9 @@ const TrancheInfo = () => {
       { amount: 'Сумма' },
     ],
   };
-  const currentTranche = useAppSelector((state) => state.tranches.current_tranche);
+  const currentTranche = useAppSelector(
+    (state) => state.tranches.current_tranche
+  );
   const getContent = () =>
     tabs[tab].map((field: string, index: number) => (
       <InfoElem
@@ -36,10 +40,12 @@ const TrancheInfo = () => {
   const dispatch = useAppDispatch();
   const toContracts = () => {
     dispatch(setNavigation('contracts'));
+    dispatch(setContractsFilter({ name: 'ref', value: currentTranche!.ref }));
   };
 
   const toTransactions = () => {
     dispatch(setNavigation('transactions'));
+    dispatch(setTransactionsFilter({name: 'ref', value: currentTranche!.ref}))
   };
 
   if (currentTranche)

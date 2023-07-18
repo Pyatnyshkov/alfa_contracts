@@ -5,7 +5,10 @@ import Input from 'arui-feather/input';
 import Button from 'arui-feather/button';
 import { FilterMIcon } from '@alfalab/icons-glyph/FilterMIcon';
 
-import { setContractsFilter } from '../../../store/reducers/contracts';
+import {
+  setContractsFilter,
+  setRefetch,
+} from '../../../store/reducers/contracts';
 import { useAppDispatch } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -34,7 +37,7 @@ const Filter = () => {
     },
     {
       placeholder: 'Название',
-      name: 'name',
+      name: 'company_name',
     },
   ];
 
@@ -42,6 +45,10 @@ const Filter = () => {
   const handleChange = (v?: string, e?: React.ChangeEvent<any>): void => {
     const { name, value } = e?.currentTarget;
     name && dispatch(setContractsFilter({ name, value }));
+  };
+
+  const setFilter = () => {
+    dispatch(setRefetch(true));
   };
 
   return (
@@ -59,7 +66,7 @@ const Filter = () => {
             onChange={handleChange}
           />
         ))}
-        <Button size="s" icon={<FilterMIcon />}>
+        <Button size="s" icon={<FilterMIcon />} onClick={setFilter}>
           Фильтр
         </Button>
       </InputGroup>

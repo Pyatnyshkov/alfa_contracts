@@ -1,4 +1,5 @@
 export interface ITransaction extends IObjectKeys {
+  ref: number;
   id: number;
   card_number: string;
   amount: string;

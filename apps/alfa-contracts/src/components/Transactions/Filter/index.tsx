@@ -5,7 +5,10 @@ import Input from 'arui-feather/input';
 import Button from 'arui-feather/button';
 import { FilterMIcon } from '@alfalab/icons-glyph/FilterMIcon';
 
-import { setTransactionsFilter } from '../../../store/reducers/transactions';
+import {
+  setTransactionsFilter,
+  setRefetch,
+} from '../../../store/reducers/transactions';
 import { useAppDispatch } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -48,6 +51,10 @@ const Filter = () => {
     name && dispatch(setTransactionsFilter({ name, value }));
   };
 
+  const setFilter = () => {
+    dispatch(setRefetch(true));
+  };
+
   return (
     <div>
       <Heading size="xs" className={styles['heading']}>
@@ -63,7 +70,7 @@ const Filter = () => {
             onChange={handleChange}
           />
         ))}
-        <Button size="s" icon={<FilterMIcon />}>
+        <Button size="s" icon={<FilterMIcon />} onClick={setFilter}>
           Фильтр
         </Button>
       </InputGroup>

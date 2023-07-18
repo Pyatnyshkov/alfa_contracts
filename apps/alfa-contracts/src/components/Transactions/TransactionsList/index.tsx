@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Spin from 'arui-feather/spin';
 import { ArrowUpDownHeavyMIcon } from '@alfalab/icons-glyph/ArrowUpDownHeavyMIcon';
 import { ITransaction } from '../../../models/transactions';
-import { useGetTransactionsQuery } from '../../../services/api';
+import { useLazyGetTransactionsQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import { setCurrentTransaction } from '../../../store/reducers/transactions';
@@ -13,12 +13,24 @@ const TransactionsList = () => {
   const filter = useAppSelector(
     (state) => state.transactions.transactionsFilter
   );
+  const need_refetch = useAppSelector((state) => state.contracts.need_refetch);
+
   const dispatch = useAppDispatch();
-  const { data, isFetching, isLoading } = useGetTransactionsQuery(filter);
+  const [getTransactions, { data, isFetching, isLoading }] =
+    useLazyGetTransactionsQuery();
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [order, setOrder] = useState<boolean>(false);
 
-  useEffect(() => setTransactions(data || []), [data]);
+  useEffect(() => {
+    getTransactions(filter);
+  }, []);
+  useEffect(() => {
+    if (need_refetch) getTransactions(filter);
+  }, [need_refetch]);
+
+  useEffect(() => {
+    setTransactions(data || []);
+  }, [data]);
 
   const sortNumbers = (data: string) => {
     setOrder(!order);

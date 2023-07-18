@@ -1,4 +1,5 @@
 export interface ITranche extends IObjectKeys {
+  ref: number;
   id: number;
   kt: number;
   dt: number;

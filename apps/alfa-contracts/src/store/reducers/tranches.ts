@@ -6,10 +6,12 @@ import { ITranche } from '../../models/tranches';
 interface TranchesState {
   tranchesFilter: ITranchesFilter;
   current_tranche?: ITranche;
+  need_refetch: boolean;
 }
 
 const initialState: TranchesState = {
   tranchesFilter: {},
+  need_refetch: true,
 };
 
 const tranchesSlice = createSlice({
@@ -23,8 +25,15 @@ const tranchesSlice = createSlice({
     setCurrentTranche(state, action: PayloadAction<ITranche>) {
       state.current_tranche = action.payload;
     },
+    setRefetch(state, action: PayloadAction<boolean>) {
+      state.need_refetch = action.payload;
+    },
+    clearTranchesFilter(state) {
+      state.tranchesFilter = {};
+    },
   },
 });
 
-export const { setTranchesFilter, setCurrentTranche } = tranchesSlice.actions;
+export const { setTranchesFilter, setCurrentTranche, setRefetch, clearTranchesFilter } =
+  tranchesSlice.actions;
 export default tranchesSlice.reducer;

@@ -1,6 +1,9 @@
 export interface IContract extends IObjectKeys {
+  ref: number;
   date: number;
+  autlet: string;
   number: string;
+  merchant: number;
   company_name: string;
   bank_details: number;
   inn: number;

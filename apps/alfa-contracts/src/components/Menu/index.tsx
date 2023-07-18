@@ -5,6 +5,10 @@ import styles from './index.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppSelector';
 import { setNavigation } from '../../store/reducers/app';
 
+import { clearContractsFilter } from '../../store/reducers/contracts';
+import { clearTranchesFilter } from '../../store/reducers/tranches';
+import { clearTransactionsFilter } from '../../store/reducers/transactions';
+
 const WindowMenu = () => {
   const menu = useAppSelector((state) => state.app.navigation);
   const dispatch = useAppDispatch();
@@ -25,15 +29,22 @@ const WindowMenu = () => {
       content: <MenuItems.Reports />,
       value: 'reports',
       props: {
-        disabled: true
-      }
+        disabled: true,
+      },
     },
   ];
+
+  const handleMenu = ({ value }: any) => {
+    dispatch(setNavigation(value));
+    dispatch(clearContractsFilter());
+    dispatch(clearTranchesFilter());
+    dispatch(clearTransactionsFilter());
+  };
 
   return (
     <Menu
       checkedItems={[menu]}
-      onItemClick={({ value }) => dispatch(setNavigation(value))}
+      onItemClick={handleMenu}
       mode="radio-check"
       content={MENU}
       className={styles['menu']}

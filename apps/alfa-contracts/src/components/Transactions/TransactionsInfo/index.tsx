@@ -5,6 +5,8 @@ import Button from 'arui-feather/button';
 import InfoElem from '../../UI/InfoElem';
 
 import { setNavigation } from '../../../store/reducers/app';
+import { setContractsFilter } from '../../../store/reducers/contracts';
+import { setTranchesFilter } from '../../../store/reducers/tranches';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -39,10 +41,12 @@ const TransactionInfo = () => {
   const dispatch = useAppDispatch();
   const toContracts = () => {
     dispatch(setNavigation('contracts'));
+    dispatch(setContractsFilter({ name: 'ref', value: currentTransaction!.ref }));
   };
 
-  const toTransactions = () => {
-    dispatch(setNavigation('transactions'));
+  const toTranches = () => {
+    dispatch(setNavigation('tranches'));
+    dispatch(setTranchesFilter({name: 'ref', value: currentTransaction!.ref}))
   };
 
   if (currentTransaction)
@@ -61,8 +65,8 @@ const TransactionInfo = () => {
           <Button size="s" onClick={toContracts}>
             Договоры
           </Button>
-          <Button size="s" onClick={toTransactions}>
-            Транзакции
+          <Button size="s" onClick={toTranches}>
+            Проводки
           </Button>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Spin from 'arui-feather/spin';
 import { ArrowUpDownHeavyMIcon } from '@alfalab/icons-glyph/ArrowUpDownHeavyMIcon';
 import { ITranche } from '../../../models/tranches';
-import { useGetTranchesQuery } from '../../../services/api';
+import { useLazyGetTranchesQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import { setCurrentTranche } from '../../../store/reducers/tranches';
@@ -11,12 +11,23 @@ import styles from './index.module.scss';
 
 const TranchesList = () => {
   const filter = useAppSelector((state) => state.tranches.tranchesFilter);
+  const need_refetch = useAppSelector((state) => state.contracts.need_refetch);
+
   const dispatch = useAppDispatch();
-  const { data, isFetching, isLoading } = useGetTranchesQuery(filter);
+  const [getTranches, {data, isLoading, isFetching}] = useLazyGetTranchesQuery();
   const [tranches, setTranches] = useState<ITranche[]>([]);
   const [order, setOrder] = useState<boolean>(false);
 
-  useEffect(() => setTranches(data || []), [data]);
+  useEffect(() => {
+    getTranches(filter);
+  }, []);
+  useEffect(() => {
+    if (need_refetch) getTranches(filter);
+  }, [need_refetch]);
+
+  useEffect(() => {
+    setTranches(data || []);
+  }, [data]);
 
   const sortNumbers = (data: string) => {
     setOrder(!order);

@@ -18,7 +18,7 @@ const Header = () => {
           <span className={styles['separator']}>|</span>
           <Link>Выход</Link>
         </div>
-        <Typography.TitleResponsive tag="div" view="xsmall">
+        <Typography.TitleResponsive tag="div" view="xsmall" className={styles['role']}>
           Роль пользователя: Администратор
         </Typography.TitleResponsive>
       </div>

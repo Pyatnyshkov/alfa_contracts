@@ -2,7 +2,9 @@
   "name": "@alfa-contracts/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve alfa-contracts"
+  },
   "private": true,
   "dependencies": {
     "@alfalab/core-components": "^41.14.1",

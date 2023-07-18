@@ -19,6 +19,16 @@
     font-size: 14px;
   }
 
+  .cell {
+    display: flex;
+    align-items: center;
+  }
+
+  .sort {
+    cursor: pointer;
+    width: 15px;
+  }
+
   .row {
     .col {
       font-size: 13px;

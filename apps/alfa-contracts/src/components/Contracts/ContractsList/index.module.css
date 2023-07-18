@@ -16,6 +16,14 @@
   padding: 10px;
   font-size: 14px;
 }
+.table .cell {
+  display: flex;
+  align-items: center;
+}
+.table .sort {
+  cursor: pointer;
+  width: 15px;
+}
 .table .row .col {
   font-size: 13px;
 }

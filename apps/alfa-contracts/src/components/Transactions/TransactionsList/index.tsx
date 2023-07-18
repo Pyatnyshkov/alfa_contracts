@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Spin from 'arui-feather/spin';
+import { ArrowUpDownHeavyMIcon } from '@alfalab/icons-glyph/ArrowUpDownHeavyMIcon';
 import { ITransaction } from '../../../models/transactions';
 import { useGetTransactionsQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
@@ -14,7 +15,19 @@ const TransactionsList = () => {
   );
   const dispatch = useAppDispatch();
   const { data, isFetching, isLoading } = useGetTransactionsQuery(filter);
-  const transactions = data || [];
+  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [order, setOrder] = useState<boolean>(false);
+
+  useEffect(() => setTransactions(data || []), [data]);
+
+  const sortNumbers = (data: string) => {
+    setOrder(!order);
+    const sorted = [...transactions].sort(
+      (contract: ITransaction, next: ITransaction) =>
+        order ? contract[data] - next[data] : next[data] - contract[data]
+    );
+    setTransactions(sorted);
+  };
 
   if (isLoading || isFetching) return <Spin size="s" visible={true} />;
 
@@ -30,11 +43,27 @@ const TransactionsList = () => {
         <tr className={styles['header']}>
           <th className={styles['col']}>Utrnno</th>
           <th className={styles['col']}>Номер карты</th>
-          <th className={styles['col']}>Сумма</th>
+          <th className={styles['col']}>
+            <div className={styles['cell']}>
+              Сумма{' '}
+              <ArrowUpDownHeavyMIcon
+                className={styles['sort']}
+                onClick={() => sortNumbers('amount')}
+              />
+            </div>
+          </th>
           <th className={styles['col']}>Валюта</th>
           <th className={styles['col']}>Номер устройства</th>
           <th className={styles['col']}>Тип операции</th>
-          <th className={styles['col']}>Дата операции</th>
+          <th className={styles['col']}>
+            <div className={styles['cell']}>
+              Дата операции{' '}
+              <ArrowUpDownHeavyMIcon
+                className={styles['sort']}
+                onClick={() => sortNumbers('operation_date')}
+              />
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>

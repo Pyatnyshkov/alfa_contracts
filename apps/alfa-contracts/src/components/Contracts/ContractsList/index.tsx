@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Spin from 'arui-feather/spin';
+import { ArrowUpDownHeavyMIcon } from '@alfalab/icons-glyph/ArrowUpDownHeavyMIcon';
 import { IContract } from '../../../models/contracts';
 import { useGetContractsQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
@@ -12,7 +13,28 @@ const ContractsList = () => {
   const filter = useAppSelector((state) => state.contracts.contractsFilter);
   const dispatch = useAppDispatch();
   const { data, isFetching, isLoading } = useGetContractsQuery(filter);
-  const contracts = data || [];
+  const [contracts, setContracts] = useState<IContract[]>([]);
+  const [order, setOrder] = useState<boolean>(false);
+
+  useEffect(() => setContracts(data || []), [data]);
+
+  const sortNumbers = (data: string) => {
+    setOrder(!order);
+    const sorted = [...contracts].sort((contract: IContract, next: IContract) =>
+      order ? contract[data] - next[data] : next[data] - contract[data]
+    );
+    setContracts(sorted);
+  };
+
+  const sortStrings = (data: string) => {
+    setOrder(!order);
+    const sorted = [...contracts].sort((contract: IContract, next: IContract) =>
+      order
+        ? ('' + contract[data]).localeCompare(next[data])
+        : ('' + next[data]).localeCompare(contract[data])
+    );
+    setContracts(sorted);
+  };
 
   if (isLoading || isFetching) return <Spin size="s" visible={true} />;
 
@@ -26,9 +48,33 @@ const ContractsList = () => {
     <table className={styles['table']}>
       <thead>
         <tr className={styles['header']}>
-          <th className={styles['col']}>Дата договора</th>
-          <th className={styles['col']}>Номер договора</th>
-          <th className={styles['col']}>Название компании</th>
+          <th className={styles['col']}>
+            <div className={styles['cell']}>
+              Дата договора{' '}
+              <ArrowUpDownHeavyMIcon
+                className={styles['sort']}
+                onClick={() => sortNumbers('date')}
+              />
+            </div>
+          </th>
+          <th className={styles['col']}>
+            <div className={styles['cell']}>
+              Номер договора{' '}
+              <ArrowUpDownHeavyMIcon
+                className={styles['sort']}
+                onClick={() => sortStrings('number')}
+              />
+            </div>
+          </th>
+          <th className={styles['col']}>
+            <div className={styles['cell']}>
+              Название компании{' '}
+              <ArrowUpDownHeavyMIcon
+                className={styles['sort']}
+                onClick={() => sortStrings('company_name')}
+              />
+            </div>
+          </th>
           <th className={styles['col']}>Банковские реквизиты</th>
           <th className={styles['col']}>Инн</th>
         </tr>

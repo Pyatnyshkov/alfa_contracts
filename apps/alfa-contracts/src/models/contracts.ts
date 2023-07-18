@@ -1,5 +1,5 @@
 export interface IContract extends IObjectKeys {
-  date: Date;
+  date: number;
   number: string;
   company_name: string;
   bank_details: number;

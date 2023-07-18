@@ -10,6 +10,7 @@ import { setCurrentTranche } from '../../../store/reducers/tranches';
 import styles from './index.module.scss';
 
 const TranchesList = () => {
+  const current_tranche = useAppSelector((state) => state.tranches.current_tranche);
   const filter = useAppSelector((state) => state.tranches.tranchesFilter);
   const need_refetch = useAppSelector((state) => state.contracts.need_refetch);
 
@@ -86,7 +87,9 @@ const TranchesList = () => {
           <tr
             key={index}
             onClick={() => dispatch(setCurrentTranche(tranche))}
-            className={styles['row']}
+            className={`${styles['row']} ${
+              tranche.id === current_tranche?.id ? styles['selected'] : ''
+            }`}
           >
             <td className={styles['col']}>{tranche.id}</td>
             <td className={styles['col']}>{tranche.kt}</td>

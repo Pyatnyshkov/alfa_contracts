@@ -10,6 +10,7 @@ import { setCurrentTransaction } from '../../../store/reducers/transactions';
 import styles from './index.module.scss';
 
 const TransactionsList = () => {
+  const current_transactions = useAppSelector((state) => state.transactions.current_transaction);
   const filter = useAppSelector(
     (state) => state.transactions.transactionsFilter
   );
@@ -83,7 +84,9 @@ const TransactionsList = () => {
           <tr
             key={index}
             onClick={() => dispatch(setCurrentTransaction(transaction))}
-            className={styles['row']}
+            className={`${styles['row']} ${
+              transaction.id === current_transactions?.id ? styles['selected'] : ''
+            }`}
           >
             <td className={styles['col']}>{transaction.utrno}</td>
             <td className={styles['col']}>{transaction.card_number}</td>

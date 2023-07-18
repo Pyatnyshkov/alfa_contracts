@@ -10,6 +10,9 @@ import { setCurrentContract } from '../../../store/reducers/contracts';
 import styles from './index.module.scss';
 
 const ContractsList = () => {
+  const current_contract = useAppSelector(
+    (state) => state.contracts.current_contract
+  );
   const filter = useAppSelector((state) => state.contracts.contractsFilter);
   const need_refetch = useAppSelector((state) => state.contracts.need_refetch);
 
@@ -96,7 +99,9 @@ const ContractsList = () => {
           <tr
             key={index}
             onClick={() => dispatch(setCurrentContract(contract))}
-            className={styles['row']}
+            className={`${styles['row']} ${
+              contract.number === current_contract?.number ? styles['selected'] : ''
+            }`}
           >
             <td className={styles['col']}>
               {new Date(contract.date).toLocaleDateString()}

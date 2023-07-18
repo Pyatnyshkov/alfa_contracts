@@ -35,9 +35,12 @@
     }
   }
 
-  .row:hover {
-    cursor: pointer;
-    background-color: #b0cef6
+  .row.selected {
+    background-color: #89a5c9 !important;
   }
 
+  .row:hover {
+    cursor: pointer;
+    background-color: #b0cef6;
+  }
 }

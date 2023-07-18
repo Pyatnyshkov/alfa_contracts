@@ -27,6 +27,9 @@
 .table .row .col {
   font-size: 13px;
 }
+.table .row.selected {
+  background-color: #89a5c9 !important;
+}
 .table .row:hover {
   cursor: pointer;
   background-color: #b0cef6;

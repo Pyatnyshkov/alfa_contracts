@@ -5,7 +5,7 @@ import Input from 'arui-feather/input';
 import Button from 'arui-feather/button';
 import { FilterMIcon } from '@alfalab/icons-glyph/FilterMIcon';
 
-import { setContractsFilter } from '../../../store/reducers/contracts';
+import { setTransactionsFilter } from '../../../store/reducers/transactions';
 import { useAppDispatch } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -17,31 +17,35 @@ interface IInput {
 const Filter = () => {
   const inputs = [
     {
-      placeholder: 'Мерчант',
-      name: 'merchant',
+      placeholder: 'ID проводки',
+      name: 'id',
     },
     {
-      placeholder: 'Аутлет',
-      name: 'autlet',
+      placeholder: 'Номер карты',
+      name: 'card_number',
     },
     {
-      placeholder: 'Терминал',
-      name: 'terminal',
+      placeholder: 'TID',
+      name: 'tid',
     },
     {
-      placeholder: 'EQID',
-      name: 'eqid',
+      placeholder: 'MID',
+      name: 'mid',
     },
     {
-      placeholder: 'Название',
-      name: 'name',
+      placeholder: 'Utrnno',
+      name: 'utrnno',
+    },
+    {
+      placeholder: 'Код авторизации',
+      name: 'auth_code',
     },
   ];
 
   const dispatch = useAppDispatch();
   const handleChange = (v?: string, e?: React.ChangeEvent<any>): void => {
     const { name, value } = e?.currentTarget;
-    name && dispatch(setContractsFilter({ name, value }));
+    name && dispatch(setTransactionsFilter({ name, value }));
   };
 
   return (

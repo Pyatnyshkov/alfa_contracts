@@ -12,23 +12,26 @@ interface ITabs {
   [key: string]: any;
 }
 
-const TrancheInfo = () => {
+const TransactionInfo = () => {
   const [tab, setTab] = useState<string>('details');
   const tabs: ITabs = {
     details: [
-      { kt: 'Счет КТ' },
-      { dt: 'Счет ДТ' },
-      { date: 'Дата' },
-      { charge_date: 'Дата списания' },
+      { utrno: 'Utrno' },
+      { card_number: 'Номер карты' },
       { amount: 'Сумма' },
+      { operation_date: 'Дата операции' },
+      { aggregation: 'Параметр агрегации' },
+      { other: 'Какое-то поле' },
     ],
   };
-  const currentTranche = useAppSelector((state) => state.tranches.current_tranche);
+  const currentTransaction = useAppSelector(
+    (state) => state.transactions.current_transaction
+  );
   const getContent = () =>
     tabs[tab].map((field: string, index: number) => (
       <InfoElem
         key={index}
-        value={currentTranche && currentTranche[Object.keys(field)[0]]}
+        value={currentTransaction && currentTransaction[Object.keys(field)[0]]}
         label={Object.values(field)[0]}
       />
     ));
@@ -42,7 +45,7 @@ const TrancheInfo = () => {
     dispatch(setNavigation('transactions'));
   };
 
-  if (currentTranche)
+  if (currentTransaction)
     return (
       <div className={styles['component']}>
         <Tabs>
@@ -50,7 +53,7 @@ const TrancheInfo = () => {
             onClick={() => setTab('details')}
             checked={tab === 'details'}
           >
-            Детализация по проводке
+            Детализация по транзакции
           </TabItem>
         </Tabs>
         <div className={styles['table']}>{getContent()}</div>
@@ -66,4 +69,4 @@ const TrancheInfo = () => {
     );
 };
 
-export default TrancheInfo;
+export default TransactionInfo;

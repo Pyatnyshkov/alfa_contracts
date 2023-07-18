@@ -1,6 +1,7 @@
 const urls = {
   contracts: '/api/contracts',
   tranches: '/api/tranches',
+  transactions: '/api/transactions',
 };
 
 const navigation = {

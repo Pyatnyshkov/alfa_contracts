@@ -4,12 +4,12 @@ import { IContract } from '../../../models/contracts';
 import { useGetContractsQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
-import { setCurrentContract } from '../../../store/reducers/app';
+import { setCurrentContract } from '../../../store/reducers/contracts';
 
 import styles from './index.module.scss';
 
 const ContractsList = () => {
-  const filter = useAppSelector((state) => state.app.contractsFilter);
+  const filter = useAppSelector((state) => state.contracts.contractsFilter);
   const dispatch = useAppDispatch();
   const { data, isFetching, isLoading } = useGetContractsQuery(filter);
   const contracts = data || [];

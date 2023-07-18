@@ -18,6 +18,15 @@ export interface ITranchesFilter extends IObjectKeys {
   amount?: number;
 }
 
+export interface ITransactionsFilter extends IObjectKeys {
+  id?: number;
+  card_number?: string;
+  tid?: string;
+  mid?: string;
+  utrno?: number;
+  auth_code?: string;
+}
+
 export interface IFilterELem {
   name: string;
   value: string;

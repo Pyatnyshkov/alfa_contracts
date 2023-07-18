@@ -5,10 +5,16 @@ import axios from 'axios';
 import { urls } from '../utils/urls';
 import { IContract } from '../models/contracts';
 import { ITranche } from '../models/tranches';
-import { IContractsFilter, ITranchesFilter } from '../models/filter';
+import {
+  IContractsFilter,
+  ITranchesFilter,
+  ITransactionsFilter,
+} from '../models/filter';
 
 import contracts from './contracts.json';
 import tranches from './tranches.json';
+import transactions from './transactions.json';
+import { ITransaction } from '../models/transactions';
 
 const baseQuery =
   (): BaseQueryFn<{
@@ -25,6 +31,8 @@ const baseQuery =
           return { data: contracts };
         case urls.tranches:
           return { data: tranches };
+        case urls.transactions:
+          return { data: transactions };
         default:
           return { data: contracts };
       }
@@ -45,7 +53,16 @@ export const api = createApi({
         url: urls.tranches,
       }),
     }),
+    getTransactions: build.query<ITransaction[], ITransactionsFilter>({
+      query: () => ({
+        url: urls.transactions,
+      }),
+    }),
   }),
 });
 
-export const { useGetContractsQuery, useGetTranchesQuery } = api;
+export const {
+  useGetContractsQuery,
+  useGetTranchesQuery,
+  useGetTransactionsQuery,
+} = api;

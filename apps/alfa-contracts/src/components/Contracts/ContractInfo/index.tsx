@@ -4,7 +4,7 @@ import TabItem from 'arui-feather/tab-item';
 import Button from 'arui-feather/button';
 import InfoElem from '../../UI/InfoElem';
 
-import {setNavigation} from '../../../store/reducers/app';
+import { setNavigation } from '../../../store/reducers/app';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 
@@ -35,7 +35,9 @@ const ContractInfo = () => {
     tariff: [{ tariff: 'Тариф' }],
     reports: [{ email: 'e-mail' }, { sftp: 'SFTP' }, { eq_id: 'НИБ (EQ ID)' }],
   };
-  const currentContract = useAppSelector((state) => state.app.current_contract);
+  const currentContract = useAppSelector(
+    (state) => state.contracts.current_contract
+  );
   const getContent = () =>
     tabs[tab].map((field: string, index: number) => (
       <InfoElem
@@ -79,8 +81,12 @@ const ContractInfo = () => {
         </Tabs>
         <div className={styles['table']}>{getContent()}</div>
         <div className={styles['buttons']}>
-          <Button size="s" onClick={toTranches}>Проводки</Button>
-          <Button size="s" onClick={toTransactions}>Транзакции</Button>
+          <Button size="s" onClick={toTranches}>
+            Проводки
+          </Button>
+          <Button size="s" onClick={toTransactions}>
+            Транзакции
+          </Button>
         </div>
       </div>
     );

@@ -3,7 +3,7 @@ export interface ITranche extends IObjectKeys {
   kt: number;
   dt: number;
   date: number;
-  amount: number;
+  amount: string;
   currency: number;
   comment: string;
   charge_date: number;

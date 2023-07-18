@@ -4,12 +4,12 @@ import { ITranche } from '../../../models/tranches';
 import { useGetTranchesQuery } from '../../../services/api';
 import { Typography } from '@alfalab/core-components/typography';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useAppSelector';
-import { setCurrentTranche } from '../../../store/reducers/app';
+import { setCurrentTranche } from '../../../store/reducers/tranches';
 
 import styles from './index.module.scss';
 
 const TranchesList = () => {
-  const filter = useAppSelector((state) => state.app.tranchesFilter);
+  const filter = useAppSelector((state) => state.tranches.tranchesFilter);
   const dispatch = useAppDispatch();
   const { data, isFetching, isLoading } = useGetTranchesQuery(filter);
   const tranches = data || [];

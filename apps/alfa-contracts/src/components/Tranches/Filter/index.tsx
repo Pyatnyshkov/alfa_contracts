@@ -6,7 +6,7 @@ import Button from 'arui-feather/button';
 import CalendarInput from 'arui-feather/calendar-input';
 import { FilterMIcon } from '@alfalab/icons-glyph/FilterMIcon';
 
-import { setTranchesFilter } from '../../../store/reducers/app';
+import { setTranchesFilter } from '../../../store/reducers/tranches';
 import { useAppDispatch } from '../../../hooks/useAppSelector';
 import styles from './index.module.scss';
 

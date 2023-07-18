@@ -91,7 +91,7 @@ const ContractsList = () => {
             </div>
           </th>
           <th className={styles['col']}>Банковские реквизиты</th>
-          <th className={styles['col']}>Инн</th>
+          <th className={styles['col']}>ИНН</th>
         </tr>
       </thead>
       <tbody>

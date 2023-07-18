@@ -10,12 +10,15 @@ import { setCurrentTranche } from '../../../store/reducers/tranches';
 import styles from './index.module.scss';
 
 const TranchesList = () => {
-  const current_tranche = useAppSelector((state) => state.tranches.current_tranche);
+  const current_tranche = useAppSelector(
+    (state) => state.tranches.current_tranche
+  );
   const filter = useAppSelector((state) => state.tranches.tranchesFilter);
   const need_refetch = useAppSelector((state) => state.contracts.need_refetch);
 
   const dispatch = useAppDispatch();
-  const [getTranches, {data, isLoading, isFetching}] = useLazyGetTranchesQuery();
+  const [getTranches, { data, isLoading, isFetching }] =
+    useLazyGetTranchesQuery();
   const [tranches, setTranches] = useState<ITranche[]>([]);
   const [order, setOrder] = useState<boolean>(false);
 
@@ -69,39 +72,73 @@ const TranchesList = () => {
               />
             </div>
           </th>
-          <th className={styles['col']}><div className={styles['cell']}>
-            Дата{' '}
-            <ArrowUpDownHeavyMIcon
-              className={styles['sort']}
-              onClick={() => sortNumbers('date')}
-            />
-          </div></th>
+          <th className={styles['col']}>
+            <div className={styles['cell']}>
+              Дата{' '}
+              <ArrowUpDownHeavyMIcon
+                className={styles['sort']}
+                onClick={() => sortNumbers('date')}
+              />
+            </div>
+          </th>
           <th className={styles['col']}>Сумма</th>
           <th className={styles['col']}>Валюта</th>
           <th className={styles['col']}>Комментарий</th>
-          <th className={styles['col']}>Отчет Sale Oper List</th>
+          <th className={styles['col']}>Отчеты</th>
         </tr>
       </thead>
       <tbody>
         {tranches.map((tranche: ITranche, index: number) => (
           <tr
             key={index}
-            onClick={() => dispatch(setCurrentTranche(tranche))}
             className={`${styles['row']} ${
               tranche.id === current_tranche?.id ? styles['selected'] : ''
             }`}
           >
-            <td className={styles['col']}>{tranche.id}</td>
-            <td className={styles['col']}>{tranche.kt}</td>
-            <td className={styles['col']}>{tranche.dt}</td>
-            <td className={styles['col']}>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
+              {tranche.id}
+            </td>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
+              {tranche.kt}
+            </td>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
+              {tranche.dt}
+            </td>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
               {new Date(tranche.date).toLocaleDateString()}
             </td>
-            <td className={styles['col']}>{tranche.amount}</td>
-            <td className={styles['col']}>{tranche.currency}</td>
-            <td className={styles['col']}>{tranche.comment}</td>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
+              {tranche.amount}
+            </td>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
+              {tranche.currency}
+            </td>
+            <td
+              className={styles['col']}
+              onClick={() => dispatch(setCurrentTranche(tranche))}
+            >
+              {tranche.comment}
+            </td>
             <td className={styles['col']}>
-              <span>Загрузить</span>
+              <a href="./assets/test_download.txt" download="test_download.txt">Загрузить</a>
             </td>
           </tr>
         ))}

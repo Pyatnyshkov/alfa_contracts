@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import ThemeProvider from 'arui-feather/theme-provider';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
@@ -14,11 +14,6 @@ import { useAppSelector } from '../hooks/useAppSelector';
 
 export function App() {
   const { isAuth, navigation } = useAppSelector((state) => state.app);
-
-  if (!isAuth) {
-    return <Auth />
-  }
-
   const getContent = useCallback(() => {
     switch (navigation) {
       case 'contracts':
@@ -33,6 +28,11 @@ export function App() {
         return <Contracts />;
     }
   }, [navigation]);
+
+  if (!isAuth) {
+    return <Auth />;
+  }
+
   return (
     <ThemeProvider theme="alfa-on-white">
       <div className={styles['content']}>

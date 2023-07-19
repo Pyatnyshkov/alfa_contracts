@@ -2,6 +2,7 @@ const urls = {
   contracts: '/api/contracts',
   tranches: '/api/tranches',
   transactions: '/api/transactions',
+  oauth: '/api/auth/google/redirect/'
 };
 
 const navigation = {

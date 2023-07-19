@@ -7,12 +7,18 @@ import Tranches from '../components/Tranches';
 import Transactions from '../components/Transactions';
 import Reports from '../components/Reports';
 import Layout from '../components/UI/Layout';
+import Auth from '../components/Auth';
 
 import styles from './app.module.css';
 import { useAppSelector } from '../hooks/useAppSelector';
 
 export function App() {
-  const navigation = useAppSelector(state => state.app.navigation);
+  const { isAuth, navigation } = useAppSelector((state) => state.app);
+
+  if (!isAuth) {
+    return <Auth />
+  }
+
   const getContent = useCallback(() => {
     switch (navigation) {
       case 'contracts':

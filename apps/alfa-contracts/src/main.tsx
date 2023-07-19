@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const clientID = '130530496114-g11tao52s44okmbqe1krt1t0eirptm27.apps.googleusercontent.com\n';
+const clientID = '130530496114-g11tao52s44okmbqe1krt1t0eirptm27.apps.googleusercontent.com';
 root.render(
   <Provider store={store}>
     <GoogleOAuthProvider clientId={clientID}>
